@@ -1,6 +1,6 @@
 import os
 import sys
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 import torch
 import torch.nn as nn
@@ -135,6 +135,15 @@ def load_model(body_part):
     model.eval()
     return model
 
+client = os.path.join(os.getcwd(),"..","frontend","dist")
+
+@app.route("/",defaults={"filename":""})
+@app.route("/<path:filename>")
+def index(filename):
+    if not filename:
+        filename="index.html"
+    return send_from_directory(client,filename)
+
 @app.route('/api/predict', methods=['POST'])
 def predict():
     # Check if both image and body part are provided
@@ -187,5 +196,5 @@ def predict():
         logger.error(f"An error occurred: {str(e)}")
         return jsonify({'error': f"An error occurred: {str(e)}"}), 500
 
-if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+# if __name__ == '__main__':
+#     app.run(debug=True, port=5000)
