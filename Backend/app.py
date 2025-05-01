@@ -135,7 +135,7 @@ def load_model(body_part):
     model.eval()
     return model
 
-client = os.path.join(os.getcwd(),"..","frontend","dist")
+client = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "frontend", "dist")
 
 @app.route("/",defaults={"filename":""})
 @app.route("/<path:filename>")
