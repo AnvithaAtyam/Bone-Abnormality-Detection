@@ -32,7 +32,8 @@ function App() {
         formData.append('bodyPart', selectedBodyPart);
         
         // Send request to Flask backend
-        const response = await fetch('http://localhost:5000/api/predict', {
+        // const response = await fetch('http://localhost:5000/api/predict', {
+        const response = await fetch('https://bone-abnormality-detection.onrender.com/api/predict', {
           method: 'POST',
           body: formData,
         });
@@ -45,7 +46,8 @@ function App() {
         const data = await response.json();
         
         // Update output based on prediction
-        setOutput(`${data.body_part.toUpperCase()}: ${data.prediction} (Confidence: ${data.confidence})`);
+        // setOutput(`${data.body_part.toUpperCase()}: ${data.prediction} (Confidence: ${data.confidence})`);
+        setOutput(`${data.body_part.toUpperCase()}: ${data.prediction}`);
       } catch (error) {
         setError(error.message || 'An error occurred during prediction');
       } finally {
