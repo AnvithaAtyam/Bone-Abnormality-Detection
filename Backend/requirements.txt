@@ -4,3 +4,4 @@ Pillow>=9.0.0
 torch>=2.0.0
 torchvision>=0.15.0
 efficientnet-pytorch>=0.7.1
+gunicorn==23.0.
