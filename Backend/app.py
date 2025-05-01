@@ -172,7 +172,7 @@ def predict():
         
         return jsonify({
             'prediction': result,
-            # 'confidence': f"{abnormal_prob:.2f}%",
+            'confidence': f"{abnormal_prob:.2f}%",
             'body_part': body_part,
             'fracture_probability': f"{fracture_probability:.2f}%"
         })
